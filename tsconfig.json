@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@client/*": ["client/src/*"],
+      "@server/*": ["server/src/*"]
+    }
+  },
+  "include": ["client/src/**/*.ts", "server/src/**/*.ts"]
+}
