@@ -1,3 +1,78 @@
-li {
-    color: black;
+/* Container for the whole page: vertical layout, full height */
+.return-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* make it fill the entire viewport */
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #121212d1;
+  color: #fff;
+  margin: 0; /* override any default body margins */
+}
+
+/* Page title at the top center */
+.return-page h1 {
+  margin-top: 70px;
+  font-size: 65px;
+  text-align: center;
+}
+.return-page h1 span {
+    color: yellow;
+}
+
+/* Wrap the game links; center them both horizontally & vertically */
+.game-container {
+  flex: 1;                   /* fill remaining space below the title */
+  display: flex;
+  flex-wrap: wrap;           /* allow multiple rows if needed */
+  justify-content: center;   /* center items horizontally */
+  align-items: center;       /* center items vertically */
+  gap: 2rem;                 /* space between each button */
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Style each game link as a card */
+.game-button {
+  display: flex;
+  flex-direction: column;    /* icon above name */
+  align-items: center;       /* center horizontally */
+  text-decoration: none;
+  color: #fff;               /* white text on dark bg */
+  width: 140px; 
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;             /* a bit wider to give padding */
+  transition: transform 0.1s;
+  background-color: rgb(32, 32, 32); /* black background */
+}
+
+.game-button:hover {
+  transform: scale(1.05);
+  color: yellow;
+}
+
+/* Icon wrapper: fixed size, centers the SVG */
+.game-button .icon {
+  width: 100px;
+  height: 100px;
+  display: flex;             /* enables flex centering */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+/* SVG itself stretches to fill the wrapper */
+.game-button .icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* optional: force white fill if your icons support it */
+}
+
+/* Game name text */
+.game-button span {
+  font-size: 1rem;
+  text-align: center;
 }
