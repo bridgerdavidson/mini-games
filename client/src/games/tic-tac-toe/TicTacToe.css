@@ -1,29 +1,37 @@
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
 
 /* Center the game in the screen */
 .ttt {
-  /* fill the entire viewport */
-  width: 100%;
+  /* make .ttt fill the viewport */
+  width: 100vw;
   height: 100vh;
 
-  /* flex‐center its contents both ways */
+  /* stack children vertically and center them */
   display: flex;
   flex-direction: column;
   justify-content: center;  /* vertical centering */
   align-items: center;      /* horizontal centering */
+
+  /* clean up any default margins */
+  margin: 0;
+  padding: 0;
 }
+.ttt h1 {
+    margin-bottom: 40px;
+}
+
+
 
 /* Status line and restart button spacing */
 .status {
   font-size: 1.25rem;
 }
 .ttt > button {
+  margin: 40px auto;    /* top/bottom 10px, left/right auto */
   padding: 0.5rem 1rem;
   font-size: 1rem;
+  font-weight: bolder;
+  background-color: yellow;
+  color:#000;
 }
 
 /* Make the nine cells form a 3×3 grid */
@@ -34,21 +42,79 @@ html, body, #root {
   gap: 0.5rem;                              /* space between cells */
 }
 
-/* Style each cell */
 .grid button {
-  width: 100%;
-  height: 100%;
-  font-size: 2rem;         /* big X/O */
+  background-color: #0e0e0eb1;
+  color: #000;           /* svg fill uses currentColor */
+  border: none;
   display: flex;
   align-items: center;
-  justify-content: center; /* center the X/O */
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #333;
-  cursor: pointer;
+  justify-content: center;
+  /* remove text font-size so it doesn’t interfere */
+  font-size: 0;
 }
 
- /* .grid button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}  */
+.grid button svg {
+  fill: currentColor;  /* makes the SVG use the CSS color */
+}
+
+/* when you hover over an empty cell */
+.grid button:hover svg {
+  color: rgba(255, 255, 0, 0.266);       /* preview highlight color */
+}
+
+/* permanent move state */
+.grid button.filled svg {
+  color: yellow;        /* final X/O color */
+}
+
+.grid button:focus {
+  outline: none;
+}
+
+.game-area {
+  display: flex;
+  align-items: center;      /* vertical align icons & grid */
+  justify-content: center;  /* center the whole row horizontally */
+  gap: 1rem;                /* space between X, grid, and O */
+  margin-bottom: 1rem;      /* space before the “New Game” button */
+}
+
+/* make sure the side icons don’t stretch */
+.side-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+    border-bottom: 4px solid currentColor;
+  padding-bottom: 0.5rem;     /* gives some breathing room above the line */
+  box-sizing: border-box;     /* include that padding in the height */
+}
+
+/* if you want the side icons slightly smaller or colored differently */
+.side-icon svg {
+  width: 100%;
+  height: 100%;
+  color: yellow;
+  fill: currentColor;
+}
+/* make sure the side icons don’t stretch */
+.side-icon-o {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+    border-bottom: 4px solid currentColor;
+  padding-bottom: 0.5rem;     /* gives some breathing room above the line */
+  box-sizing: border-box;     /* include that padding in the height */
+}
+
+/* if you want the side icons slightly smaller or colored differently */
+.side-icon-o svg {
+  width: 100%;
+  height: 100%;
+  margin: 21px;
+  color: yellow;
+  fill: currentColor;
+}
