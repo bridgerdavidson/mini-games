@@ -2,6 +2,7 @@
 /* Center the game in the screen */
 .ttt {
   /* make .ttt fill the viewport */
+  position: relative;
   width: 100vw;
   height: 100vh;
 
@@ -26,14 +27,29 @@
   font-size: 1.25rem;
 }
 .ttt > button {
-  margin: 40px auto;    /* top/bottom 10px, left/right auto */
+  margin: 40px auto;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: bolder;
   background-color: yellow;
-  color:#000;
+  color: #000;
+  border: none;                 /* remove any native border */
+  outline: none;                /* remove default focus ring */
+  cursor: pointer;              /* indicate it’s clickable */
+  transition: transform 0.2s ease-in-out; /* smooth transition */
 }
 
+/* Focus state (optional, if you still want a custom focus style) */
+.ttt > button:focus {
+  outline: none;
+  /* box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.6); */
+}
+
+/* Hover animation */
+.ttt > button:hover {
+  transform: translateY(-3px);
+box-shadow: 0 4px 16px rgba(0, 0, 0, 0.678);
+}
 /* Make the nine cells form a 3×3 grid */
 .grid {
   display: grid;
@@ -73,6 +89,7 @@
 
 .game-area {
   display: flex;
+  width: 100%;
   align-items: center;      /* vertical align icons & grid */
   justify-content: center;  /* center the whole row horizontally */
   gap: 1rem;                /* space between X, grid, and O */
@@ -81,15 +98,38 @@
 
 /* make sure the side icons don’t stretch */
 .side-icon {
+    margin-right: 20px;
+    box-sizing: border-box;   
+      border: 8px solid transparent;
+
+  position: relative;     /* 1) make pseudo-element positioned relative to this */
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: yellow;
 
-    border-bottom: 4px solid currentColor;
-  padding-bottom: 0.5rem;     /* gives some breathing room above the line */
-  box-sizing: border-box;     /* include that padding in the height */
 }
+.side-icon::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;            /* just below the icon */
+  left: 10%;
+  height: 8px;
+  border-radius: 999px;
+  width: 0%;               /* start collapsed */
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.side-icon.active::after {
+  width: 80%;
+}
+.side-icon.winner::after {
+  display: none;
+}
+.side-icon.winner {
+  border: 8px solid currentColor;
+  border-radius: 8px;  /* optional rounding */}
 
 /* if you want the side icons slightly smaller or colored differently */
 .side-icon svg {
@@ -100,15 +140,38 @@
 }
 /* make sure the side icons don’t stretch */
 .side-icon-o {
+  position: relative;     /* 1) make pseudo-element positioned relative to this */
   flex-shrink: 0;
+  box-sizing: border-box;   
+      border: 8px solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-
-    border-bottom: 4px solid currentColor;
-  padding-bottom: 0.5rem;     /* gives some breathing room above the line */
-  box-sizing: border-box;     /* include that padding in the height */
+  color: yellow;
+  margin-left: 20px;
 }
+
+.side-icon-o::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;            /* just below the icon */
+  left: 10%;
+  height: 8px;
+  border-radius: 999px;
+
+  width: 0%;               /* start collapsed */
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.side-icon-o.active::after {
+  width: 80%;
+}
+.side-icon-o.winner::after {
+  display: none;
+}
+.side-icon-o.winner {
+  border: 8px solid currentColor;
+  border-radius: 8px;  /* optional rounding */}
 
 /* if you want the side icons slightly smaller or colored differently */
 .side-icon-o svg {
@@ -117,4 +180,28 @@
   margin: 21px;
   color: yellow;
   fill: currentColor;
+}
+.status {
+    font-size: 1.75rem;
+}
+
+.back-button {
+  position: absolute;
+  top: 1rem;             /* distance from the top edge */
+  right: 3rem;           /* distance from the right edge */
+  
+  /* your existing styling */
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #fff;
+  color: #000;
 }

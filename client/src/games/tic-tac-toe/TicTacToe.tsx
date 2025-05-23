@@ -5,6 +5,7 @@ import type { Board, Player } from "./types";
 import { getWinner, isDraw } from "./logic";
 import { FaDotCircle } from "react-icons/fa";
 import { TiTimes } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 function TicTacToe() {
   const [board, setBoard] = useState<Board>(Array(9).fill(null));
@@ -33,10 +34,19 @@ function TicTacToe() {
 
   return (
     <div className="ttt">
+      <Link to="/" className="back-button">
+        back
+      </Link>
       <h1>Tic-Tac-Toe</h1>
       <div className="game-area">
         {/* Left “X” label */}
-        <div className={`side-icon ${currentPlayer === "X" ? "active" : ""}`}>
+        <div
+          className={[
+            "side-icon",
+            !winner && currentPlayer === "X" ? "active" : "",
+            winner === "X" ? "winner" : "",
+          ].join(" ")}
+        >
           {getPlayerIcon("X")}
         </div>
         {/* Your actual board */}
@@ -67,7 +77,13 @@ function TicTacToe() {
             );
           })}
         </div>
-        <div className={`side-icon-o ${currentPlayer === "O" ? "active" : ""}`}>
+        <div
+          className={[
+            "side-icon-o",
+            !winner && currentPlayer === "O" ? "active" : "",
+            winner === "O" ? "winner" : "",
+          ].join(" ")}
+        >
           {getPlayerIcon("O")}
         </div>
       </div>
@@ -81,8 +97,7 @@ function TicTacToe() {
         New Game
       </button>
 
-      {winner && <div className="status">Winner: {winner}</div>}
-      {draw && <div className="status">Draw!</div>}
+      {draw && <div className="status">Draw</div>}
     </div>
   );
 }
