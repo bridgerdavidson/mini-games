@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { generateCardsAndBoard, checkMatch } from "./logic";
 import type { Card, Board } from "./types";
+import "./MemoryMatch.css";
 
 function MemoryMatch() {
   const [board, setBoard] = useState<Board>([]);
@@ -10,7 +11,19 @@ function MemoryMatch() {
   const [turns, setTurns] = useState(0);
 
   useEffect(() => {
-    setBoard(generateCardsAndBoard(6));
+    const items = [
+      "dog",
+      "cat",
+      "mouse",
+      "bear",
+      "pig",
+      "cow",
+      "bird",
+      "fox",
+      "panda",
+      "monkey",
+    ];
+    setBoard(generateCardsAndBoard(10, items));
   }, []);
 
   // whenever two cards are chosen, compare them

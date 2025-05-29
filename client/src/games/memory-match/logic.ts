@@ -1,11 +1,11 @@
 import type { Card, Board } from './types';
 
-export function generateCardsAndBoard(numOfPairs: number): Board {
+export function generateCardsAndBoard(numOfPairs: number, contents: string[]): Board {
     const board: Card[] = [];
     let cardId = 0;
     // Generate pairs of cards and put them in the deck
     for (let pairId = 0; pairId < numOfPairs; pairId++) {
-        const value = "idk";
+        const value = contents[pairId];
         board.push({id: cardId++, pairId: pairId, flipped: false, matched: false, content: value});
         board.push({id: cardId++, pairId: pairId, flipped: false, matched: false, content: value});
     }

@@ -1,0 +1,21 @@
+.memory {
+    position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  /* stack children vertically and center them */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical centering */
+  align-items: center;      /* horizontal centering */
+
+  /* clean up any default margins */
+  margin: 0;
+  padding: 0;
+}
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(5, 100px);
+    gap: 0.5rem;
+}
