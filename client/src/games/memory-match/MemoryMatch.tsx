@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { generateCardsAndBoard, checkMatch } from "./logic";
 import type { Card, Board } from "./types";
+
+import { FaDog } from "react-icons/fa6";
+import { FaCat } from "react-icons/fa6";
+import { GiSeatedMouse } from "react-icons/gi";
+import { GiBearFace } from "react-icons/gi";
+import { GiPig } from "react-icons/gi";
+import { GiCow } from "react-icons/gi";
+import { GiFox } from "react-icons/gi";
+import { GiPanda } from "react-icons/gi";
+import { GiMonkey } from "react-icons/gi";
+import { GiTurtle } from "react-icons/gi";
+import { FaQuestion } from "react-icons/fa";
+
 import "./MemoryMatch.css";
 
 function MemoryMatch() {
@@ -18,7 +31,7 @@ function MemoryMatch() {
       "bear",
       "pig",
       "cow",
-      "bird",
+      "turtle",
       "fox",
       "panda",
       "monkey",
@@ -65,18 +78,51 @@ function MemoryMatch() {
     setDisabled(false);
   }
 
+  function getGameIcon(icon: string) {
+    switch (icon) {
+      case "dog":
+        return <FaDog />;
+      case "cat":
+        return <FaCat />;
+      case "mouse":
+        return <GiSeatedMouse />;
+      case "bear":
+        return <GiBearFace />;
+      case "pig":
+        return <GiPig />;
+      case "cow":
+        return <GiCow />;
+      case "fox":
+        return <GiFox />;
+      case "panda":
+        return <GiPanda />;
+      case "monkey":
+        return <GiMonkey />;
+      case "turtle":
+        return <GiTurtle />;
+      default:
+        return null;
+    }
+  }
+
   return (
     <div className="memory">
       <h1>Memory Match</h1>
       <p>Turns: {turns}</p>
       <div className="board">
-        {board.map((c) => (
+        {board.map((c: Card) => (
           <button
             key={c.id}
             className={`card ${c.flipped ? "flipped" : ""} `}
             onClick={() => handleClick(c)}
           >
-            {c.flipped || c.matched ? c.content : "?"}
+            {c.flipped || c.matched ? (
+              <div className="icon">{getGameIcon(c.content)}</div>
+            ) : (
+              <div className="icon-question">
+                <FaQuestion />
+              </div>
+            )}
           </button>
         ))}
       </div>

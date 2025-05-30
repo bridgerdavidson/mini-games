@@ -19,3 +19,43 @@
     grid-template-rows: repeat(5, 100px);
     gap: 0.5rem;
 }
+
+/* Target your card buttons */
+.memory .card,
+.memory .card:hover,
+.memory .card:focus,
+.memory .card:focus-visible {
+  outline: none !important;      /* remove all outline styles */
+  box-shadow: none !important;   /* guard against any shadow-based rings */
+  border: none !important;       /* just in case it’s a border */
+}
+
+.card {
+  background-color: hsl(0, 3%, 7%);                   /* default bg */
+  transition: background-color 0.2s ease;
+}
+.icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.icon-question svg {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+    transition: width 0.2s ease, height 0.2s ease;  /* animate size change */
+
+}
+.card:not(.flipped):hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.card:not(.flipped):hover svg {
+  width: 90%;
+  height: 90%;
+}
+.card.matched {
+  background-color: yellow;
+}
+.card.matched svg{
+  color: rgba(0, 0, 0, 0.853);
+}
