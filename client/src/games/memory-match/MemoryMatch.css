@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 .memory {
     position: relative;
   width: 100vw;
@@ -12,12 +14,14 @@
   /* clean up any default margins */
   margin: 0;
   padding: 0;
+  font-family: 'Audiowide', cursive; /* use the imported font */
 }
 .board {
     display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(5, 100px);
     gap: 0.5rem;
+    margin-bottom: 40px;
 }
 
 /* Target your card buttons */
@@ -53,9 +57,89 @@
   width: 90%;
   height: 90%;
 }
-.card.matched {
+.card.flipped.matched {
   background-color: yellow;
 }
-.card.matched svg{
+.card.flipped.matched svg{
   color: rgba(0, 0, 0, 0.853);
+}
+
+.new-game {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: yellow;
+  color: #000;
+  border: none;                 /* remove any native border */
+  outline: none;                /* remove default focus ring */
+  cursor: pointer;              /* indicate it’s clickable */
+  transition: transform 0.2s ease-in-out; /* smooth transition */
+}
+
+.new-game:focus {
+  outline: none;
+  /* box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.6); */
+}
+.new-game:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.678);
+} 
+
+.controls {
+  display: flex;
+  align-items: center;     /* vertically center “Turns:” and the button */
+  gap: 5rem;               /* space between the two */
+  margin-bottom: 1rem;     /* some space before the board */
+  justify-content: flex-start; /* keep them at the left side */
+}
+.turns {
+  color: yellow;
+}
+
+.game-over-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);  /* semi-transparent dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;  /* sit on top of everything else */
+}
+.game-over-card {
+  background-color: #fff;
+  color: #000;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 250px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.game-over-card h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.game-over-card p {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1.2rem;
+}
+
+.game-over-card .new-game {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: yellow;
+  color: #000;
+  border: none;                 /* remove any native border */
+  outline: none;                /* remove default focus ring */
+  cursor: pointer;              /* indicate it’s clickable */
+  transition: transform 0.2s ease-in-out; /* smooth transition */
+}
+.game-over-card .new-game:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }

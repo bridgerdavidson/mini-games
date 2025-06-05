@@ -13,6 +13,7 @@ import { GiPanda } from "react-icons/gi";
 import { GiMonkey } from "react-icons/gi";
 import { GiTurtle } from "react-icons/gi";
 import { FaQuestion } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import "./MemoryMatch.css";
 
@@ -105,15 +106,28 @@ function MemoryMatch() {
     }
   }
 
+  const gameOver = board.length > 0 && board.every((c) => c.matched);
+
   return (
     <div className="memory">
+      <Link to="/" className="back-button">
+        back
+      </Link>
       <h1>Memory Match</h1>
-      <p>Turns: {turns}</p>
+
+      <div className="controls">
+        <p className="turns">Turns: {turns}</p>
+        <button className="new-game" onClick={() => window.location.reload()}>
+          New Game
+        </button>
+      </div>
       <div className="board">
         {board.map((c: Card) => (
           <button
             key={c.id}
-            className={`card ${c.flipped ? "flipped" : ""} `}
+            className={`card ${c.flipped ? "flipped" : ""} ${
+              c.matched ? "matched" : ""
+            } `}
             onClick={() => handleClick(c)}
           >
             {c.flipped || c.matched ? (
@@ -126,7 +140,20 @@ function MemoryMatch() {
           </button>
         ))}
       </div>
-      <button onClick={() => window.location.reload()}>Reset Game</button>
+      {gameOver && (
+        <div className="game-over-backdrop">
+          <div className="game-over-card">
+            <h2>You Win!</h2>
+            <p>Turns: {turns}</p>
+            <button
+              className="new-game"
+              onClick={() => window.location.reload()}
+            >
+              Play Again
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

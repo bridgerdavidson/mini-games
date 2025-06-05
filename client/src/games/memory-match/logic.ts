@@ -29,3 +29,7 @@ export function checkMatch(board: Board, firstCardId: number, secondCardId: numb
   }
   return board;
 }
+
+export function isGameOver(board: Board): boolean {
+    return board.every(card => card.matched);
+}

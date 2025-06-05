@@ -1,4 +1,5 @@
-/* Container for the whole page: vertical layout, full height */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 .return-page {
   display: flex;
   flex-direction: column;
@@ -9,6 +10,7 @@
   background-color: #121212d1;
   color: #fff;
   margin: 0; /* override any default body margins */
+  font-family: 'Audiowide', cursive; /* use the imported font */
 }
 
 /* Page title at the top center */
@@ -23,11 +25,10 @@
 
 /* Wrap the game links; center them both horizontally & vertically */
 .game-container {
-  flex: 1;                   /* fill remaining space below the title */
   display: flex;
   flex-wrap: wrap;           /* allow multiple rows if needed */
   justify-content: center;   /* center items horizontally */
-  align-items: center;       /* center items vertically */
+  align-items: flex-start;       /* center items vertically */
   gap: 2rem;                 /* space between each button */
   width: 100%;
   padding: 1rem;
@@ -43,9 +44,11 @@
   width: 140px; 
   padding-top: 20px;
   padding-bottom: 20px;
-  border-radius: 10px;             /* a bit wider to give padding */
+  padding-left:10px;
+  padding-right:10px;
+  border-radius: 10px;           
   transition: transform 0.1s;
-  background-color: rgb(32, 32, 32); /* black background */
+  background-color: rgb(32, 32, 32); 
 }
 
 .game-button:hover {
