@@ -138,8 +138,27 @@
   outline: none;                /* remove default focus ring */
   cursor: pointer;              /* indicate it’s clickable */
   transition: transform 0.2s ease-in-out; /* smooth transition */
+  margin-right: 5px;
 }
 .game-over-card .new-game:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
+
+.home-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: yellow;
+  color: #000;
+  border-radius: 9px;
+  cursor: pointer;             
+  transition: transform 0.2s ease-in-out; 
+  margin-left: 5px;
+}
+.home-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.678);
+  color: #000;
+} 

@@ -57,7 +57,7 @@ function MemoryMatch() {
       // flip back non-matched cards
       setBoard((d) => d.map((c) => (c.matched ? c : { ...c, flipped: false })));
       resetTurn();
-    }, 1000);
+    }, 800);
   }, [firstChoice, secondChoice]);
 
   function handleClick(card: Card) {

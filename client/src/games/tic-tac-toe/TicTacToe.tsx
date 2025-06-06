@@ -49,10 +49,8 @@ function TicTacToe() {
         >
           {getPlayerIcon("X")}
         </div>
-        {/* Your actual board */}
         <div className="grid">
           {board.map((cell, i) => {
-            // if this cell is empty and hovered, show the preview:
             let markToShow: React.ReactNode = null;
 
             if (cell !== null) {
@@ -98,6 +96,25 @@ function TicTacToe() {
       </button>
 
       {draw && <div className="status">Draw</div>}
+      {winner && (
+        <div className="game-over-backdrop">
+          <div className="game-over-card">
+            <h2>{winner} Wins!</h2>
+            <button
+              className="new-game"
+              onClick={() => {
+                setBoard(Array(9).fill(null));
+                setCurrentPlayer("X");
+              }}
+            >
+              Play Again
+            </button>
+            <Link to="/" className="home-link">
+              Home
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
